@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from bs4 import BeautifulSoup
+import os  # os modülünü ekliyoruz
 
 app = Flask(__name__)
 
@@ -44,4 +45,5 @@ def get_follow_data(username):
     return following, followers
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Flask uygulamasını, ortam değişkenlerinden PORT alarak başlatıyoruz
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)), debug=True)
