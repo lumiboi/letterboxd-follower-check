@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        username = request.form["username"]
+        username = request.form["username"].lower()  # Kullanıcı adını küçük harfe çevir
         following, followers = get_follow_data(username)
         difference_list = set(following) - set(followers)
         return render_template("result.html", username=username, difference_list=difference_list)
